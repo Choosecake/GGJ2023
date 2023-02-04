@@ -1,7 +1,9 @@
 using System;
+using Game;
+using Game.Movement;
 using UnityEngine;
 
-namespace Player
+namespace Game
 {
     [RequireComponent(typeof(PlayerMovement))]
     public class PlayerManager : MonoBehaviour
