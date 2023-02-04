@@ -10,6 +10,9 @@ namespace Game
         [SerializeField] private float _rotationTime = 1f;
         [SerializeField] private Transform _cameraHolder;
 
+
+        private Vector3 cameraOffset;
+
         public Vector2 MoveInput
         {
             get => _moveInput;
@@ -26,6 +29,7 @@ namespace Game
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            cameraOffset = _cameraHolder.position - transform.position;
         }
 
         private void Update()
@@ -46,6 +50,8 @@ namespace Game
             {
                 _rigidbody.velocity = _moveDirection * _moveSpeed;
             }
+
+            _cameraHolder.position = transform.position + cameraOffset;
         }
 
         private void LerpRotate(float movementAngle)

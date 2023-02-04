@@ -9,6 +9,7 @@ namespace Game
     public class PlayerManager : MonoBehaviour
     {
         private PlayerMovement _movement;
+        private Grabber _grabber;
         private PlayerInputManager _input;
 
         
@@ -16,11 +17,14 @@ namespace Game
         {
             _input = GetComponent<PlayerInputManager>();
             _movement = GetComponent<PlayerMovement>();
+            _grabber = GetComponent<Grabber>();
         }
         
         void Update()
         {
-            _movement.MoveInput = _input.InputActions.Movement.MoveInput.ReadValue<Vector2>();
+            _grabber.GrabActivated = _input.InputActions.Gameplay.Grab.WasPressedThisFrame();
+            _movement.MoveInput = _input.InputActions.Gameplay.MoveInput.ReadValue<Vector2>();
+            
         }
     }
 }
