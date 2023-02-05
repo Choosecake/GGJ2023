@@ -26,7 +26,7 @@ namespace Game.Input
     ""name"": ""InputActions"",
     ""maps"": [
         {
-            ""name"": ""Movement"",
+            ""name"": ""Gameplay"",
             ""id"": ""beb8f90b-7316-485d-abe0-7e153216f2f0"",
             ""actions"": [
                 {
@@ -37,6 +37,15 @@ namespace Game.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Grab"",
+                    ""type"": ""Button"",
+                    ""id"": ""cbbc8012-15ad-42b7-9f7a-c249ba36f562"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -94,15 +103,66 @@ namespace Game.Input
                     ""action"": ""MoveInput"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""126053bb-b042-49ce-834e-9cb11648861e"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Default"",
+                    ""action"": ""MoveInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b36f617e-3371-4e61-a187-80f1eaf28f18"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""41dd4d3e-6324-445a-9e31-d70e90c8af1c"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Default"",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Default"",
+            ""bindingGroup"": ""Default"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
-            // Movement
-            m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
-            m_Movement_MoveInput = m_Movement.FindAction("MoveInput", throwIfNotFound: true);
+            // Gameplay
+            m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
+            m_Gameplay_MoveInput = m_Gameplay.FindAction("MoveInput", throwIfNotFound: true);
+            m_Gameplay_Grab = m_Gameplay.FindAction("Grab", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -159,41 +219,59 @@ namespace Game.Input
             return asset.FindBinding(bindingMask, out action);
         }
 
-        // Movement
-        private readonly InputActionMap m_Movement;
-        private IMovementActions m_MovementActionsCallbackInterface;
-        private readonly InputAction m_Movement_MoveInput;
-        public struct MovementActions
+        // Gameplay
+        private readonly InputActionMap m_Gameplay;
+        private IGameplayActions m_GameplayActionsCallbackInterface;
+        private readonly InputAction m_Gameplay_MoveInput;
+        private readonly InputAction m_Gameplay_Grab;
+        public struct GameplayActions
         {
             private @InputActions m_Wrapper;
-            public MovementActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @MoveInput => m_Wrapper.m_Movement_MoveInput;
-            public InputActionMap Get() { return m_Wrapper.m_Movement; }
+            public GameplayActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @MoveInput => m_Wrapper.m_Gameplay_MoveInput;
+            public InputAction @Grab => m_Wrapper.m_Gameplay_Grab;
+            public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(MovementActions set) { return set.Get(); }
-            public void SetCallbacks(IMovementActions instance)
+            public static implicit operator InputActionMap(GameplayActions set) { return set.Get(); }
+            public void SetCallbacks(IGameplayActions instance)
             {
-                if (m_Wrapper.m_MovementActionsCallbackInterface != null)
+                if (m_Wrapper.m_GameplayActionsCallbackInterface != null)
                 {
-                    @MoveInput.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnMoveInput;
-                    @MoveInput.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnMoveInput;
-                    @MoveInput.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnMoveInput;
+                    @MoveInput.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMoveInput;
+                    @MoveInput.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMoveInput;
+                    @MoveInput.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMoveInput;
+                    @Grab.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnGrab;
+                    @Grab.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnGrab;
+                    @Grab.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnGrab;
                 }
-                m_Wrapper.m_MovementActionsCallbackInterface = instance;
+                m_Wrapper.m_GameplayActionsCallbackInterface = instance;
                 if (instance != null)
                 {
                     @MoveInput.started += instance.OnMoveInput;
                     @MoveInput.performed += instance.OnMoveInput;
                     @MoveInput.canceled += instance.OnMoveInput;
+                    @Grab.started += instance.OnGrab;
+                    @Grab.performed += instance.OnGrab;
+                    @Grab.canceled += instance.OnGrab;
                 }
             }
         }
-        public MovementActions @Movement => new MovementActions(this);
-        public interface IMovementActions
+        public GameplayActions @Gameplay => new GameplayActions(this);
+        private int m_DefaultSchemeIndex = -1;
+        public InputControlScheme DefaultScheme
+        {
+            get
+            {
+                if (m_DefaultSchemeIndex == -1) m_DefaultSchemeIndex = asset.FindControlSchemeIndex("Default");
+                return asset.controlSchemes[m_DefaultSchemeIndex];
+            }
+        }
+        public interface IGameplayActions
         {
             void OnMoveInput(InputAction.CallbackContext context);
+            void OnGrab(InputAction.CallbackContext context);
         }
     }
 }
