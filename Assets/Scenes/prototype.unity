@@ -109,7 +109,7 @@ NavMeshSettings:
     agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
-    agentClimb: 0.4
+    agentClimb: 2
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -585,7 +585,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695853181}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 10}
+  m_LocalPosition: {x: 0, y: 3.96, z: 10}
   m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1931,6 +1931,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1247156279}
     m_Modifications:
+    - target: {fileID: 400326335994935493, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
+      propertyPath: m_Height
+      value: 3.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 400326335994935493, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
+      propertyPath: m_Radius
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400326335994935493, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400326335994935493, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
+      propertyPath: m_BaseOffset
+      value: -2.78
+      objectReference: {fileID: 0}
     - target: {fileID: 6177651782104841223, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
       propertyPath: m_Name
       value: Civilian
@@ -1945,7 +1961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8033622601157440886, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8033622601157440886, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2004,7 +2020,9 @@ MonoBehaviour:
   - {fileID: 130565286}
   - {fileID: 1256325769}
   _player: {fileID: 695853182}
-  _scareDistance: 5
+  _scareDistance: 2
+  _minimumBeaconDistance: 2
+  _isInBeacon: 0
 --- !u!1001 &3632261457052665989
 PrefabInstance:
   m_ObjectHideFlags: 0
