@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Screen" style="height: 100%; width: 100%;">
+        <ui:Button text="Play" display-tooltip-when-elided="true" enable-rich-text="true" name="playButton" tooltip="Click here to play" style="white-space: normal; height: 10%; width: 16%; justify-content: flex-start; align-items: auto; position: relative; top: 33%; left: 42%; bottom: auto; opacity: 1;" />
+        <ui:Button text="Quit" display-tooltip-when-elided="true" enable-rich-text="true" name="quitButton" style="white-space: normal; height: 10%; width: 16%; justify-content: flex-start; align-items: auto; position: relative; top: 70%; left: 42%; bottom: 0; opacity: 1;" />
+        <ui:Button text="Options" display-tooltip-when-elided="true" enable-rich-text="true" name="optionsButton" style="white-space: normal; height: 10%; width: 16%; justify-content: flex-start; align-items: auto; position: relative; top: 25%; left: 42%; bottom: auto; opacity: 1;" />
+    </ui:VisualElement>
+</ui:UXML>
