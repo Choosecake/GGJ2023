@@ -5,6 +5,7 @@ namespace Game.Src.Game
         Boot,
         Menu,
         Game,
+        Lost
     }
 
     public class GameState

@@ -11,7 +11,9 @@ public class InsideCollider : MonoBehaviour
 
 
     public HashSet<GameObject> _insideCollider = new();
-    public int Inside = 0;
+
+
+    public IEnumerable<GameObject> Inside => new List<GameObject>(_insideCollider).AsReadOnly();
 
     [CanBeNull]
     public GameObject GetClosestTo(Transform baseTransform)
@@ -35,28 +37,26 @@ public class InsideCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.tag);
+        Debug.Log("Entered "+other.gameObject.name);
         if (Filter != null && !Filter(other))
         {
             return;
         }
 
         _insideCollider.Add(other.gameObject);
-        Inside = _insideCollider.Count;;
-
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("OnTriggerExit");
+        Debug.Log("Left "+other.gameObject.name);
         if (Filter != null && !Filter(other))
         {
             return;
         }
+
         _insideCollider.Remove(other.gameObject);
-        Inside = _insideCollider.Count;
     }
-    
+
 
     // Start is called before the first frame update
     void Start()

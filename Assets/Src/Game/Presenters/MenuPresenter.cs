@@ -51,7 +51,7 @@ namespace Game.Presenters
         {
             Debug.Log("Clicked start!");
             startButton.SetEnabled(false);
-            SceneManager.LoadScene(Scenes.Game);
+            Global.Services().State.Transition(States.Game);
         }
 
 

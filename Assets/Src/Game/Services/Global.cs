@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Game.Src.Game.System;
 
 namespace Game.Src.Game.Services
 {
@@ -27,6 +28,11 @@ namespace Game.Src.Game.Services
         public static GameServices Services()
         {
             return Resolve<GameServices>();
+        }
+
+        public static Systems Systems()
+        {
+            return Resolve<Systems>();
         }
     }
 }

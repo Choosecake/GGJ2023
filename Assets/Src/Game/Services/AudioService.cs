@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Game.Src.Game.Services
 {
@@ -28,7 +29,7 @@ namespace Game.Src.Game.Services
         {
             var stringKey = _volumeKeys[type];
 
-            Game.mixer.SetFloat(stringKey, NormalizeVolume(value));
+            Global.Resolve<AudioMixer>().SetFloat(stringKey, NormalizeVolume(value));
             PlayerPrefs.SetFloat(stringKey, value);
         }
 
@@ -52,7 +53,7 @@ namespace Game.Src.Game.Services
         {
             foreach (var (type, key) in _volumeKeys)
             {
-                Game.mixer.SetFloat(key, NormalizeVolume(GetVolume(type)));
+                Global.Resolve<AudioMixer>().SetFloat(key, NormalizeVolume(GetVolume(type)));
             }
         }
     }
