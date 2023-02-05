@@ -7,8 +7,8 @@ namespace Game.Src.Game.Npcs
 {
     public abstract class NpcMovement : MonoBehaviour
     {
+        [SerializeField] NavMeshAgent _agent;
         [HideInInspector] public Transform _goal;
-        private NavMeshAgent _agent;
         private float _rotationVelocity;
         private float _rotationAngle;
         private float movementAngle;
@@ -20,7 +20,7 @@ namespace Game.Src.Game.Npcs
 
         private void Update()
         {
-            _agent.destination = _goal.position;
+            _agent.SetDestination(_goal.position);
         }
     }
 }

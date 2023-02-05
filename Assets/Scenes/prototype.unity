@@ -605,7 +605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908b458f36fe25a4781e9afc9590ce2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  _moveSpeed: 15
   _rotationTime: 0.5
   _cameraHolder: {fileID: 907671746}
 --- !u!54 &695853185
@@ -617,7 +617,7 @@ Rigidbody:
   m_GameObject: {fileID: 695853181}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -1023,15 +1023,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907671745}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 125, z: -136.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!1001 &908188126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1219,14 +1219,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 45, z: -45}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 907671746}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1011145695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1932,6 +1932,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1247156279}
     m_Modifications:
     - target: {fileID: 400326335994935493, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
+      propertyPath: m_Speed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 400326335994935493, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
       propertyPath: m_Height
       value: 3.85
       objectReference: {fileID: 0}
@@ -1957,7 +1961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8033622601157440886, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -49.1
       objectReference: {fileID: 0}
     - target: {fileID: 8033622601157440886, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1965,7 +1969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8033622601157440886, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -11.1
       objectReference: {fileID: 0}
     - target: {fileID: 8033622601157440886, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1995,11 +1999,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7834224371264857422, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
 --- !u!4 &371233180455478864 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8033622601157440886, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
+  m_PrefabInstance: {fileID: 371233180455478863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &371233180455478865 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 400326335994935493, guid: 30bcd33c8169e7743bfda82d56b14a39, type: 3}
   m_PrefabInstance: {fileID: 371233180455478863}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &371233180455478867
@@ -2014,15 +2024,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751819373853445984c760fe2cc4f124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _goal: {fileID: 0}
+  _agent: {fileID: 371233180455478865}
   _beacons:
   - {fileID: 138139891}
   - {fileID: 130565286}
   - {fileID: 1256325769}
   _player: {fileID: 695853182}
-  _scareDistance: 2
-  _minimumBeaconDistance: 2
   _isInBeacon: 0
+  _scareDistance: 10
+  _minimumBeaconDistance: 10
 --- !u!1001 &3632261457052665989
 PrefabInstance:
   m_ObjectHideFlags: 0
