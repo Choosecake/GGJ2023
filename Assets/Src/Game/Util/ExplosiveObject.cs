@@ -21,20 +21,27 @@ namespace Game
             }
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (_activateExplosion)
             {
                 GetComponent<BoxCollider>().isTrigger = true;
                 
+                int currentObject = 0;
                 foreach (var objectPiece in _objectPieces)
                 {
                     var rigidbody = objectPiece.GetComponent<Rigidbody>();
                     rigidbody.isKinematic = false;
+                    
                     objectPiece.GetComponent<MeshCollider>().isTrigger = false;
-                    _direction = new Vector3(UnityEngine.Random.value, UnityEngine.Random.value,
-                        UnityEngine.Random.value);
+
+                    var randomValue = UnityEngine.Random.value;
+                    _direction = new Vector3(randomValue * currentObject, randomValue * currentObject,
+                        randomValue * currentObject);
+                    
                     rigidbody.velocity = _direction * _explosionForce;
+
+                    currentObject += 1;
                 }
             }
         }
